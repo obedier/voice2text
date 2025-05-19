@@ -15,8 +15,100 @@ A powerful, privacy-focused voice dictation application for macOS that enables s
 
 ## Requirements
 
-- macOS 12.0 or later
-- Swift 5.5 or later
+- macOS 13.0 or later
+- Swift 5.9 or later
+
+## Development Environment Setup
+
+This project can be built entirely using command-line tools, without requiring Xcode. Here's how to set up your development environment:
+
+### 1. Install Swift via Homebrew
+
+```bash
+brew install swift
+```
+
+Add the Homebrew Swift to your PATH:
+
+```bash
+export PATH="/opt/homebrew/opt/swift/bin:$PATH"
+```
+
+Add the above line to your shell profile file (~/.zshrc or ~/.bash_profile) to make it permanent.
+
+### 2. Install Required Dependencies
+
+```bash
+brew install swift-format # Optional but recommended for code formatting
+```
+
+### 3. Project Structure
+
+The project follows a standard Swift Package Manager structure:
+
+```
+voice2text/
+├── Package.swift                 # Swift Package Manager manifest
+├── build_app.sh                  # Script to build macOS app bundle
+├── src/
+│   └── VoiceDictate/
+│       ├── Sources/              # Application source code
+│       │   ├── Info.plist        # App Info.plist file
+│       │   ├── main.swift        # Application entry point
+│       │   ├── AppDelegate.swift # Main app delegate
+│       │   └── ...               # Other Swift source files
+│       └── Tests/                # Test files
+└── build/                        # Build output directory (created by build script)
+    └── VoiceDictate.app          # Built macOS application
+```
+
+## Building the Project
+
+### Command-Line Build
+
+To build the project from the command line:
+
+```bash
+# Build in debug mode
+swift build
+
+# Build in release mode
+swift build -c release
+```
+
+### Building a Full macOS App Bundle
+
+The project includes a script to build a complete macOS .app bundle:
+
+```bash
+chmod +x build_app.sh
+./build_app.sh
+```
+
+This script:
+1. Builds the project in release mode
+2. Creates a proper macOS .app bundle structure
+3. Sets up the Info.plist and resources
+4. Makes the app executable
+
+### Build Issues and Solutions
+
+If you encounter build issues, try these solutions:
+
+#### Swift Version Mismatch
+If you see an error about Swift version mismatch, ensure you're using Homebrew's Swift:
+```bash
+export PATH="/opt/homebrew/opt/swift/bin:$PATH"
+swift --version  # Should match the version in Package.swift
+```
+
+#### Top-Level Code Error
+If you see "`main` attribute cannot be used in a module that contains top-level code", check that:
+- Your entry point is defined properly in main.swift
+- You don't have multiple @main declarations
+
+#### AVAudioSession Unavailable on macOS
+AVAudioSession is not available on macOS. Use AVCaptureDevice for permission handling and AVAudioEngine for audio capture.
 
 ## Installation
 
@@ -26,14 +118,20 @@ git clone https://github.com/yourusername/VoiceDictate.git
 cd VoiceDictate
 ```
 
-2. Build the application:
+2. Build the application using the provided script:
 ```bash
-swift build -c release
+chmod +x build_app.sh
+./build_app.sh
 ```
 
-3. Copy the built application to your Applications folder:
+3. Run the application:
 ```bash
-cp -r .build/release/VoiceDictate.app /Applications/
+open ./build/VoiceDictate.app
+```
+
+Alternatively, you can copy the app to your Applications folder:
+```bash
+cp -r ./build/VoiceDictate.app /Applications/
 ```
 
 ## Usage
@@ -97,4 +195,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. # voice2text
+This project is licensed under the MIT License - see the LICENSE file for details. 
