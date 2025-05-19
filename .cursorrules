@@ -1,0 +1,23 @@
+# Cursor Project Rules for VoiceDictate (macOS App)
+
+1. **Build the app using Xcode or xcodebuild:**
+   - Use `xcodebuild -scheme VoiceDictate -configuration Debug` (or Release) to build the .app bundle.
+   - Alternatively, open the project in Xcode and build from the GUI.
+
+2. **Run the app as a GUI application:**
+   - Do NOT run the app as a CLI tool (e.g., with `swift run` or by executing the binary directly).
+   - Instead, run the app using the `.app` bundle, either:
+     - From Finder (double-click the .app), or
+     - From the terminal with: `open path/to/VoiceDictate.app`
+
+3. **Do not treat this as a command-line tool:**
+   - The app uses AppKit and @NSApplicationMain, so it must be run as a macOS GUI app.
+   - Running the binary directly will result in a crash (Abort trap: 6) because the required app bundle context is missing.
+
+4. **Debugging:**
+   - Use Console.app or Xcode's debug console to view logs.
+   - If you need to see logs from the app, run it from Xcode or use `log stream` in Terminal.
+
+# Summary
+Always build as a macOS app bundle and run with `open` or via the GUI. Never run as a CLI tool.
+

@@ -1,0 +1,19 @@
+{
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/xcuserdata": true,
+    "**/*.xcodeproj/project.xcworkspace": true,
+    "**/*.xcodeproj/xcuserdata": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "vscode.swift-language-features",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+ 
+}
