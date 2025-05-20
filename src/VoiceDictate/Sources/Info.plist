@@ -22,23 +22,15 @@
     <string>1</string>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>VoiceDictate needs access to your microphone for voice dictation.</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>VoiceDictate needs access to speech recognition to convert your voice to text.</string>
-    <key>NSAppleEventsUsageDescription</key>
-    <string>VoiceDictate needs to control other applications to insert text.</string>
-    <key>LSUIElement</key>
-    <true/>
-    <key>LSBackgroundOnly</key>
-    <false/>
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2024 VoiceDictate Contributors. All rights reserved.</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
-    <key>NSRequiresAquaSystemAppearance</key>
-    <false/>
-    <key>NSSupportsAutomaticGraphicsSwitching</key>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>VoiceDictate needs access to your microphone to convert speech to text.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>VoiceDictate needs speech recognition to convert your speech to text.</string>
+    <key>LSUIElement</key>
     <true/>
 </dict>
 </plist> 

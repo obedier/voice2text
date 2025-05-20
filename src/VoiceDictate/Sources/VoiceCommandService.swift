@@ -26,10 +26,10 @@ enum VoiceCommand: String {
     
     var keyboardShortcut: (key: CGKeyCode, modifiers: CGEventFlags)? {
         switch self {
-        case .selectAll: return (0x00, CGEventFlags.maskCommand) // Command + A
-        case .copy: return (0x08, CGEventFlags.maskCommand) // Command + C
-        case .paste: return (0x09, CGEventFlags.maskCommand) // Command + V
-        case .undo: return (0x07, CGEventFlags.maskCommand) // Command + Z
+        case .selectAll: return (0x00, .maskCommand) // Command + A
+        case .copy: return (0x08, .maskCommand) // Command + C
+        case .paste: return (0x09, .maskCommand) // Command + V
+        case .undo: return (0x07, .maskCommand) // Command + Z
         default: return nil
         }
     }
@@ -84,15 +84,15 @@ class VoiceCommandService {
     }
     
     private func simulateKeyboardShortcut(key: CGKeyCode, modifiers: CGEventFlags) {
-        guard let source = CGEventSource(stateID: .hidSystemState) else { return }
+        let source = CGEventSource(stateID: CGEventSourceStateID.hidSystemState)
         
-        guard let keyDown = CGEvent(keyboardEventSource: source, virtualKey: key, keyDown: true),
-              let keyUp = CGEvent(keyboardEventSource: source, virtualKey: key, keyDown: false) else { return }
+        let keyDown = CGEvent(keyboardEventSource: source, virtualKey: key, keyDown: true)
+        let keyUp = CGEvent(keyboardEventSource: source, virtualKey: key, keyDown: false)
         
-        keyDown.flags = modifiers
-        keyUp.flags = modifiers
+        keyDown?.flags = modifiers
+        keyUp?.flags = modifiers
         
-        keyDown.post(tap: .cghidEventTap)
-        keyUp.post(tap: .cghidEventTap)
+        keyDown?.post(tap: CGEventTapLocation.cghidEventTap)
+        keyUp?.post(tap: CGEventTapLocation.cghidEventTap)
     }
 } 
